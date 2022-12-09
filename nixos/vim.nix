@@ -16,7 +16,7 @@
         set backspace=indent,eol,start
         " Turn on syntax highlighting by default
         syntax on
-
+	set clipboard=unnamedplus
         set hidden
         imap jk <Esc>
         " ...

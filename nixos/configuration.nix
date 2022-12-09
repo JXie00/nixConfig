@@ -11,6 +11,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./vim.nix
+	./vscode.nix
       ./hardware-configuration.nix
     ];
 
