@@ -18,6 +18,9 @@
         syntax on
 	set clipboard=unnamedplus
         set hidden
+	set tabstop=4
+	set autoindent
+	set expandtab
         imap jk <Esc>
         " ...
       '';

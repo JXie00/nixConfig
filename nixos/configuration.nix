@@ -10,9 +10,10 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./vim.nix
+        <home-manager/nixos>
+        ./vim.nix
 	./vscode.nix
-      ./hardware-configuration.nix
+        ./hardware-configuration.nix
     ];
 
   # Bootloader.
@@ -69,6 +70,9 @@ in
     #media-session.enable = true;
   };
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -84,8 +88,19 @@ in
     shell = pkgs.fish;
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  users.users.bigboy = {
+    isNormalUser  = true;
+    home  = "/home/bigboy";
+    description  = "bigboy jet";
+    extraGroups  = [ "wheel" "networkmanager" ];
+  };
+
+
+  home-manager.users.${user} = { pkgs, ... }: {
+    imports = [ ./home.nix ] ;
+  };
+
+
 
   services.flatpak.enable = true;
 
@@ -95,9 +110,18 @@ in
   nixpkgs.config.permittedInsecurePackages = [
       "python2.7-pyjwt-1.7.1"
   ];
+
+
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless.enable = true;
-  programs.fish.enable=true;
+  programs.fish = {
+    enable= true;
+    shellAliases = {
+       nic = "sudo vim /etc/nixos/configuration.nix";
+       nis = "sudo nixos-rebuild switch";
+       nir = "sudo nixos-rebuild switch --rollback";
+    };
+};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -143,6 +167,17 @@ in
     wantedBy = [ "graphical.target" "multi-user.target" ];
     after = [ "display-manager.service" ];
   };
+
+
+  #fonts
+  fonts.fonts = with pkgs; [
+  liberation_ttf
+  fira-code
+  fira-code-symbols
+  mplus-outline-fonts.githubRelease
+  dina-font
+  proggyfonts
+];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
