@@ -32,8 +32,24 @@
         lightline-vim         # Info bar at bottom
         indent-blankline-nvim # Indentation lines
       ];
-     extraConfig = ''
+      extraConfig = ''
+        let mapleader = " "
         syntax enable                             " Syntax highlighting
+        set nocompatible
+        set tabstop=4
+        set incsearch
+        set ignorecase
+        set smartcase
+        set showmatch
+        set mat=2
+        set hlsearch
+        set wildmenu
+        set wildmode=list:longest
+        set ai
+        set si
+        set number                                " Set numbers
+        set clipboard+=unnamedplus
+
         colorscheme srcery                        " Color scheme text
         let g:lightline = {
           \ 'colorscheme': 'wombat',
@@ -42,9 +58,28 @@
         hi Normal guibg=NONE ctermbg=NONE         " Remove background, better for personal theme
         
         imap jk <ESC>
-        set number                                " Set numbers
         nmap <F6> :NERDTreeToggle<CR>             " F6 opens NERDTree
-        set clipboard+=unnamedplus
+        map <C-j> <C-W>j
+        map <C-K> <C-W>k
+        map <C-h> <C-W>h
+        map <C-l> <C-W>l
+        noremap <C-up> <c-w>+
+        noremap <C-down> <c-w>-
+        noremap <C-left> <c-w>>
+        noremap <C-right> <c-w><
+
+        
+        map <leader>tn :tabnew<cr>
+        map <leader>to :tabonly<cr>
+        map <leader>q :bd<cr>
+        map <leader>tm :tabmove
+        map <leader>t<leader> :tabnext
+        map <leader>ws :split<cr>
+        map <leader>wS :vsplit<cr>
+        map <leader>l :bnext<cr>
+        map <leader>h :bprevious<cr>
+        
+
       '';
 
     };
