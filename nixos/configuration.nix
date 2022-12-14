@@ -10,7 +10,7 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
-        ./nvim 
+        ./nvim
 	./vscode.nix
         ./hardware-configuration.nix
     ];
@@ -148,7 +148,6 @@ in
      ulauncher
      wmctrl 
      obs-studio
-     neovim
   ];
 
   programs.starship.enable = true;

@@ -26,12 +26,11 @@
         set wildmode=list:longest
         set ai
         set si
-        set number                                " Set numbers
         set clipboard+=unnamedplus
 
-        colorscheme dracula                        " Color scheme text
+        colorscheme srcery                        " Color scheme t
         let g:lightline = {
-          \ 'colorscheme': 'dracula',
+          \ 'colorscheme': 'srcery',
           \ }                                     " Color scheme lightline
         highlight Comment cterm=italic gui=italic " Comments become italic
         hi Normal guibg=NONE ctermbg=NONE         " Remove background, better for personal theme
@@ -62,7 +61,22 @@
       packages.myVimPackage = with pkgs.vimPlugins; {
     # loaded on launch
     start = [
-        fugitive 
+      fugitive 
+     nvim-lspconfig 
+        
+        nvim-cmp
+        cmp-nvim-lsp
+        cmp-buffer
+        cmp-path
+        cmp-calc
+        cmp-spell
+        cmp-emoji
+        cmp-treesitter
+        cmp-latex-symbols
+        cmp-omni
+        cmp-vsnip
+
+
 
         # Syntax
         vim-nix
@@ -77,9 +91,9 @@
         nerdtree              # File Manager - set in extraConfig to F6
 
         # Customization 
-        #wombat256-vim         # Color scheme for lightline
-        #srcery-vim            # Color scheme for text
-        dracula-nvim
+        wombat256-vim         # Color scheme for lightline
+        srcery-vim            # Color scheme for text
+        #dracula-nvim
 
         lightline-vim         # Info bar at bottom
         indent-blankline-nvim # Indentation lines
