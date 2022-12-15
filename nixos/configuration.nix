@@ -11,7 +11,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
         ./nvim
-	./vscode.nix
+	    ./vscode.nix
         ./hardware-configuration.nix
     ];
 
@@ -29,6 +29,8 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+environment.unixODBCDrivers = with pkgs.unixODBCDrivers; [ msodbcsql17 ];
 
   # Set your time zone.
   time.timeZone = "Australia/Brisbane";
@@ -96,7 +98,7 @@ in
 
 
 
-  services.flatpak.enable = true;
+  #services.flatpak.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -148,6 +150,15 @@ in
      ulauncher
      wmctrl 
      obs-studio
+     papirus-icon-theme
+     gnomeExtensions.paperwm
+     gnomeExtensions.dash-to-dock
+     gnomeExtensions.impatience
+     gnomeExtensions.appindicator
+     gnomeExtensions.reorder-workspaces
+     gnomeExtensions.clipboard-indicator
+     gnomeExtensions.blur-my-shell
+
   ];
 
   programs.starship.enable = true;
@@ -165,12 +176,13 @@ in
 
   #fonts
   fonts.fonts = with pkgs; [
-  liberation_ttf
+  jetbrains-mono
+  inter
+  overpass
   fira-code
   fira-code-symbols
-  mplus-outline-fonts.githubRelease
-  dina-font
   proggyfonts
+  mononoki
 ];
 
   # Some programs need SUID wrappers, can be configured further or are
