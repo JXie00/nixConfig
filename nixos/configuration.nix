@@ -10,6 +10,7 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
+        ./gnome.nix
         ./nvim
 	    ./vscode.nix
         ./hardware-configuration.nix
@@ -116,6 +117,7 @@ environment.unixODBCDrivers = with pkgs.unixODBCDrivers; [ msodbcsql17 ];
        nic = "sudo vim /etc/nixos/configuration.nix";
        nis = "sudo nixos-rebuild switch";
        nir = "sudo nixos-rebuild switch --rollback";
+       ls  = "lsd";
     };
 };
 
@@ -130,7 +132,6 @@ environment.unixODBCDrivers = with pkgs.unixODBCDrivers; [ msodbcsql17 ];
      docker-compose
      fish
      oh-my-fish
-     vscode
      jetbrains.rider
      git
      btop
@@ -150,15 +151,7 @@ environment.unixODBCDrivers = with pkgs.unixODBCDrivers; [ msodbcsql17 ];
      ulauncher
      wmctrl 
      obs-studio
-     papirus-icon-theme
-     gnomeExtensions.paperwm
-     gnomeExtensions.dash-to-dock
-     gnomeExtensions.impatience
-     gnomeExtensions.appindicator
-     gnomeExtensions.reorder-workspaces
-     gnomeExtensions.clipboard-indicator
-     gnomeExtensions.blur-my-shell
-
+     lsd
   ];
 
   programs.starship.enable = true;
