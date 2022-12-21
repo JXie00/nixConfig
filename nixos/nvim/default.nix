@@ -76,6 +76,8 @@
 
         nnoremap <leader>ws <cmd>Telescope lsp_dynamic_workspace_symbols<cr>
 
+        nnoremap <leader>/ <cmd>Telescope current_buffer_fuzzy_find<cr>
+
       '';
       packages.myVimPackage = with pkgs.vimPlugins; {
     # loaded on launch
