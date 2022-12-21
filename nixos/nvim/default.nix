@@ -12,6 +12,8 @@
       vimAlias = true;
         
       configure ={ customRC= ''
+      
+
         let mapleader = " "
         syntax enable                             " Syntax highlighting
         set nocompatible
@@ -28,9 +30,9 @@
         set si
         set clipboard+=unnamedplus
 
-        colorscheme srcery                        " Color scheme t
+        colorscheme dracula                        " Color scheme t
         let g:lightline = {
-          \ 'colorscheme': 'srcery',
+          \ 'colorscheme': 'dracula',
           \ }                                     " Color scheme lightline
         highlight Comment cterm=italic gui=italic " Comments become italic
         hi Normal guibg=NONE ctermbg=NONE         " Remove background, better for personal theme
@@ -57,6 +59,23 @@
         map <leader>l :bnext<cr>
         map <leader>h :bprevious<cr>
 
+        nnoremap <leader>sf <cmd>Telescope find_files<cr>
+        nnoremap <leader>sh <cmd>Telescope help_tags<cr>
+        nnoremap <leader>sg <cmd>Telescope live_grep<cr>
+        nnoremap <leader>? <cmd>Telescope oldfiles<cr>
+
+        nnoremap <leader>. <cmd>Telescope commands<cr>
+
+        nnoremap <leader>sw <cmd>Telescope grep_string<cr>
+
+        nnoremap <leader>sd <cmd>Telescope diagnostics<cr>
+
+        nnoremap <leader><leader> <cmd>Telescope buffers<cr>
+
+        nnoremap <leader>ds <cmd>Telescope lsp_document_symbols<cr>
+
+        nnoremap <leader>ws <cmd>Telescope lsp_dynamic_workspace_symbols<cr>
+
       '';
       packages.myVimPackage = with pkgs.vimPlugins; {
     # loaded on launch
@@ -75,6 +94,14 @@
         cmp-latex-symbols
         cmp-omni
         cmp-vsnip
+
+        telescope-nvim 
+        plenary-nvim
+        nvim-treesitter
+        nvim-treesitter-textobjects
+        telescope-fzf-native-nvim
+        dracula-nvim
+
 
 
 
