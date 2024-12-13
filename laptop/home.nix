@@ -7,6 +7,7 @@
   home.homeDirectory = "/home/jet";
   nixpkgs.config.allowUnfree = true;
 
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards
@@ -16,81 +17,121 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
 
-home.packages = with pkgs; [
-  lua
-  jetbrains.rider
-  nodejs
- postman
-flameshot
-btop
+  home.packages = with pkgs; [
+    lua
+    jetbrains.rider
+    nodejs
+    postman
+    flameshot
+    btop
 
-jetbrains-mono
-inter
-overpass
-inconsolata-nerdfont
-mononoki
+    jetbrains-mono
+    inter
+    overpass
+    inconsolata-nerdfont
+    mononoki
 
-binutils
-gnutls
-fd
-imagemagick
-zstd
-ripgrep
-emacs-all-the-icons-fonts
-pandoc
-plantuml
-(aspellWithDicts (dicts: with dicts; [en en-computers en-science]))
-mu
-isync
-msmtp
+    binutils
+    gnutls
+    fd
+    imagemagick
+    zstd
+    ripgrep
+    emacs-all-the-icons-fonts
+    pandoc
+    plantuml
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
+    mu
+    isync
+    msmtp
 
-rnix-lsp
-nixfmt
+    nixfmt-classic
 
-gcc
-unzip
-alacritty
+    gcc
+    unzip
+    alacritty
+    gnumake
+    xclip
+    barrier
+    openssl
 
-dotnet-sdk_7
-omnisharp-roslyn
+    (with dotnetCorePackages; combinePackages [ sdk_6_0 sdk_7_0 sdk_8_0 ])
+    # dotnet-sdk
+    omnisharp-roslyn
+    mono
 
-];
+    rofi
+    fzf
+    bat
+    cargo
 
-  
-programs.git ={
-  enable = true;
-  userName = "jet";
-  userEmail = "jx2421533662@gmail.com";
-};
+    polybar
+    calc
+    sumneko-lua-language-server
+    arandr
+    google-chrome
+    jetbrains.webstorm
+    teams-for-linux
+    neofetch
+    zip
+    spotify
+    pgadmin4
+    postgresql_16
+    gitkraken
+    delta
+    pgcli
+    lazygit
+    ranger
+    axel
+    ncdu
+    obs-studio
+    zoom-us
+    tmux
+    picom
+    xfce.thunar
+    ventoy
+    freetube
+     ];
 
 
-programs.emacs ={
-  enable = true;
-  package = pkgs.emacs28NativeComp;
-  extraPackages = epkgs : [epkgs.vterm epkgs.sqlite3 ];
-};
+  programs.git = {
+    enable = true;
+    userName = "jet";
+    userEmail = "jx2421533662@gmail.com";
+  };
 
 
-programs.direnv ={
-  enable = true;
-  nix-direnv.enable = true;
-};
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs28NativeComp;
+    extraPackages = epkgs: [ epkgs.vterm epkgs.sqlite3 ];
+  };
 
-programs.lsd ={
-  enable = true;
-  enableAliases = true;
-};
 
-programs.starship ={
-  enable = true;
-  enableFishIntegration = true;
-};
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
-programs.neovim ={
-  enable = true;
-  vimAlias = true;
-  viAlias = true;
-};
+  programs.lsd = {
+    enable = true;
+    enableAliases = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+    viAlias = true;
+    #   extraConfig = ''
+    #   luafile ${./init.lua}
+    # '';
+  };
+
 
   home.stateVersion = "22.11";
 
