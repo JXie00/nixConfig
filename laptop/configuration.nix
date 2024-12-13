@@ -11,7 +11,7 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./gnome.nix
+      ./vim.nix
       ./vscode.nix
       ./qemu.nix
       ./hardware-configuration.nix
@@ -51,21 +51,27 @@ in
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+   services.xserver.enable = true;
+
+   
+   services.xserver.displayManager.lightdm.enable = true;
+
+   services.xserver.windowManager = {
+  	i3.enable = true;
+  };
+
+  # Enable postgres sql services
+   services.postgresql.enable = true;
+
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "au";
-    xkbVariant = "";
-  };
+  #services.xserver.displayManager.gdm.enable = true;
+  #services.xserver.desktopManager.gnome.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
+	
+  hardware.bluetooth.enable = true;
   # Enable sound with pipewire.
  #  sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -84,7 +90,8 @@ in
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
+  services.xserver.libinput.touchpad.naturalScrolling = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${user} = {
@@ -123,7 +130,7 @@ programs.fish = {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     docker
     docker-compose
